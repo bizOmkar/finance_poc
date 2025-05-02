@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-
+import base64
 # --- Page Configuration ---
 st.set_page_config(
     page_title="Finance Analyst Assistant - Vedanta",
@@ -58,7 +58,9 @@ if st.button("Submit Query"):
 
         if result:
             if result["type"] == "image":
-                st.image(result["data"], caption="Generated Chart")
+                base64_data = result["data"].split(",")[1] if "," in result["data"] else result["data"]
+                img_bytes = base64.b64decode(base64_data)
+                st.image(img_bytes, caption="Generated Chart")
             elif result["type"] == "text":
                 st.markdown(result["data"])
             else:

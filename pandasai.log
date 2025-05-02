@@ -26441,3 +26441,2617 @@ result = {'type': 'plot', 'value': plot_filename}
 2025-05-01 21:40:04 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
 2025-05-01 21:40:04 [INFO] Executing Step 8: ResultParsing
 2025-05-01 21:40:06 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 22:48:17 [INFO] Question: Plot YTD for Q1
+2025-05-01 22:48:18 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 22:48:18 [INFO] Prompt ID: 9fcec731-2ebb-4d13-bf18-fcd4b029efe6
+2025-05-01 22:48:18 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 22:48:18 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 22:48:18 [INFO] Executing Step 1: CacheLookup
+2025-05-01 22:48:18 [INFO] Using cached response
+2025-05-01 22:48:18 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 22:48:18 [INFO] Executing Step 2: Skipping...
+2025-05-01 22:48:18 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 22:48:18 [INFO] Executing Step 3: Skipping...
+2025-05-01 22:48:18 [INFO] Executing Step 4: CachePopulation
+2025-05-01 22:48:18 [INFO] Executing Step 4: Skipping...
+2025-05-01 22:48:18 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 22:48:18 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 22:48:18 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 22:48:18 [INFO] Executing Step 6: CodeExecution
+2025-05-01 22:48:18 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 22:48:18 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 22:48:18 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 22:48:18 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 22:48:18 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Realization,$/t,180,273,597,166,1085,517,1156,725,2200
+Strategic Hedging,Mn$,566,403,346,292,2358,8,2402,1772,2358
+Premium,KT,8,201,1791,406,3,579,2005,1754,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 22:48:18 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 22:48:20 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 22:48:20 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Realization,$/t,180,273,597,166,1085,517,1156,725,2200
+Strategic Hedging,Mn$,566,403,346,292,2358,8,2402,1772,2358
+Premium,KT,8,201,1791,406,3,579,2005,1754,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 22:48:20 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 22:48:20 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 22:48:20 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 22:48:20 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 22:48:21 [INFO] Executing Step 7: ResultValidation
+2025-05-01 22:48:21 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 22:48:21 [INFO] Executing Step 8: ResultParsing
+2025-05-01 22:48:22 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 22:49:02 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 22:49:02 [INFO] Question: ebitda walk from q1 to q3
+2025-05-01 22:49:02 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 22:49:02 [INFO] Prompt ID: 4a5b1ca5-2b5d-47ee-94d0-f9f948095530
+2025-05-01 22:49:02 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 22:49:03 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 22:49:03 [INFO] Executing Step 1: CacheLookup
+2025-05-01 22:49:03 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 22:49:03 [INFO] Using prompt: <dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q2FY24_Q2FY24,238,6,-33,-5,8,49,-174,6,10,-67,-40,-118,-123,238
+EW_Q3FY24_Q4FY24,346,-8,-27,-2,13,46,-99,48,12,51,-11,103,-108,221
+EW_Q4FY24_Q1FY24,221,9,-59,5,-12,2,14,37,-15,14,0,117,-124,346
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ ebitda walk from q1 to q3
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-05-01 22:49:03 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 22:49:08 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 22:49:08 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q2FY24_Q2FY24,238,6,-33,-5,8,49,-174,6,10,-67,-40,-118,-123,238
+EW_Q3FY24_Q4FY24,346,-8,-27,-2,13,46,-99,48,12,51,-11,103,-108,221
+EW_Q4FY24_Q1FY24,221,9,-59,5,-12,2,14,37,-15,14,0,117,-124,346
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ ebitda walk from q1 to q3
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-05-01 22:49:08 [INFO] Code generated:
+            ```
+            # Import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already declared and contains the DataFrame
+df = dfs[0]
+
+# Calculate the EBITDA walk from Q1 to Q3
+# Extract relevant columns for the walk
+ebitda_walk = df[['Period', 'EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 
+                  'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter']]
+
+# Filter for the relevant periods (Q1 to Q3)
+ebitda_walk_filtered = ebitda_walk[ebitda_walk['Period'].isin(['EW_Q2FY24_Q2FY24', 'EW_Q3FY24_Q4FY24', 'EW_Q4FY24_Q1FY24'])]
+
+# Plot the EBITDA walk
+fig, ax = plt.subplots(figsize=(10, 6))
+for index, row in ebitda_walk_filtered.iterrows():
+    ax.plot(['EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 
+             'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter'], 
+            row[1:], marker='o', label=row['Period'])
+
+ax.set_title('EBITDA Walk from Q1 to Q3')
+ax.set_xlabel('Components')
+ax.set_ylabel('EBITDA Value')
+ax.legend(title='Period')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plot_filename = 'ebitda_walk.png'
+plt.savefig(plot_filename)
+
+# Declare result variable
+result = { "type": "plot", "value": plot_filename }
+            ```
+            
+2025-05-01 22:49:08 [INFO] Executing Step 4: CachePopulation
+2025-05-01 22:49:08 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 22:49:08 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 22:49:08 [INFO] 
+Code running:
+```
+df = dfs[0]
+ebitda_walk = df[['Period', 'EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter']]
+ebitda_walk_filtered = ebitda_walk[ebitda_walk['Period'].isin(['EW_Q2FY24_Q2FY24', 'EW_Q3FY24_Q4FY24', 'EW_Q4FY24_Q1FY24'])]
+fig, ax = plt.subplots(figsize=(10, 6))
+for index, row in ebitda_walk_filtered.iterrows():
+    ax.plot(['EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter'], row[1:], marker='o', label=row['Period'])
+ax.set_title('EBITDA Walk from Q1 to Q3')
+ax.set_xlabel('Components')
+ax.set_ylabel('EBITDA Value')
+ax.legend(title='Period')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 22:49:08 [INFO] Executing Step 6: CodeExecution
+2025-05-01 22:49:08 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 22:49:08 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 22:49:08 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 22:49:08 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 22:49:08 [INFO] Using prompt: <dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q2FY24_Q2FY24,238,6,-33,-5,8,49,-174,6,10,-67,-40,-118,-123,238
+EW_Q3FY24_Q4FY24,346,-8,-27,-2,13,46,-99,48,12,51,-11,103,-108,221
+EW_Q4FY24_Q1FY24,221,9,-59,5,-12,2,14,37,-15,14,0,117,-124,346
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ ebitda walk from q1 to q3
+
+You generated this python code:
+df = dfs[0]
+ebitda_walk = df[['Period', 'EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter']]
+ebitda_walk_filtered = ebitda_walk[ebitda_walk['Period'].isin(['EW_Q2FY24_Q2FY24', 'EW_Q3FY24_Q4FY24', 'EW_Q4FY24_Q1FY24'])]
+fig, ax = plt.subplots(figsize=(10, 6))
+for index, row in ebitda_walk_filtered.iterrows():
+    ax.plot(['EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter'], row[1:], marker='o', label=row['Period'])
+ax.set_title('EBITDA Walk from Q1 to Q3')
+ax.set_xlabel('Components')
+ax.set_ylabel('EBITDA Value')
+ax.legend(title='Period')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 22:49:08 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 22:49:12 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 22:49:12 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q2FY24_Q2FY24,238,6,-33,-5,8,49,-174,6,10,-67,-40,-118,-123,238
+EW_Q3FY24_Q4FY24,346,-8,-27,-2,13,46,-99,48,12,51,-11,103,-108,221
+EW_Q4FY24_Q1FY24,221,9,-59,5,-12,2,14,37,-15,14,0,117,-124,346
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ ebitda walk from q1 to q3
+
+You generated this python code:
+df = dfs[0]
+ebitda_walk = df[['Period', 'EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter']]
+ebitda_walk_filtered = ebitda_walk[ebitda_walk['Period'].isin(['EW_Q2FY24_Q2FY24', 'EW_Q3FY24_Q4FY24', 'EW_Q4FY24_Q1FY24'])]
+fig, ax = plt.subplots(figsize=(10, 6))
+for index, row in ebitda_walk_filtered.iterrows():
+    ax.plot(['EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter'], row[1:], marker='o', label=row['Period'])
+ax.set_title('EBITDA Walk from Q1 to Q3')
+ax.set_xlabel('Components')
+ax.set_ylabel('EBITDA Value')
+ax.legend(title='Period')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 22:49:12 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+ebitda_walk = df[['Period', 'EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter']]
+ebitda_walk_filtered = ebitda_walk[ebitda_walk['Period'].isin(['EW_Q2FY24_Q2FY24', 'EW_Q3FY24_Q4FY24', 'EW_Q4FY24_Q1FY24'])]
+
+fig, ax = plt.subplots(figsize=(10, 6))
+for index, row in ebitda_walk_filtered.iterrows():
+    ax.plot(['EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter'], row[1:], marker='o', label=row['Period'])
+
+ax.set_title('EBITDA Walk from Q1 to Q3')
+ax.set_xlabel('Components')
+ax.set_ylabel('EBITDA Value')
+ax.legend(title='Period')
+plt.xticks(rotation=45)
+
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 22:49:12 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 22:49:12 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 22:49:12 [INFO] 
+Code running:
+```
+df = dfs[0]
+ebitda_walk = df[['Period', 'EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter']]
+ebitda_walk_filtered = ebitda_walk[ebitda_walk['Period'].isin(['EW_Q2FY24_Q2FY24', 'EW_Q3FY24_Q4FY24', 'EW_Q4FY24_Q1FY24'])]
+fig, ax = plt.subplots(figsize=(10, 6))
+for index, row in ebitda_walk_filtered.iterrows():
+    ax.plot(['EBITDA_From_Quarter', 'Sales', 'LME', 'Strategic Hedging', 'Premium', 'Realization', 'Total Cost', 'Alumina', 'Power', 'Other Hot Metal', 'Conversion & Other', 'EBITDA_To_Quarter'], row[1:], marker='o', label=row['Period'])
+ax.set_title('EBITDA Walk from Q1 to Q3')
+ax.set_xlabel('Components')
+ax.set_ylabel('EBITDA Value')
+ax.legend(title='Period')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 22:49:13 [INFO] Executing Step 7: ResultValidation
+2025-05-01 22:49:13 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 22:49:13 [INFO] Executing Step 8: ResultParsing
+2025-05-01 22:49:14 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:05:17 [INFO] Question: Plot YTD for Q1
+2025-05-01 23:05:18 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:05:18 [INFO] Prompt ID: da53544f-103e-47fb-9185-2233db30e324
+2025-05-01 23:05:18 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:05:18 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:05:18 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:05:18 [INFO] Using cached response
+2025-05-01 23:05:18 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:05:18 [INFO] Executing Step 2: Skipping...
+2025-05-01 23:05:18 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:05:18 [INFO] Executing Step 3: Skipping...
+2025-05-01 23:05:18 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:05:18 [INFO] Executing Step 4: Skipping...
+2025-05-01 23:05:18 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:05:18 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:05:18 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:05:18 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:05:18 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:05:18 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:05:18 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:05:18 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:05:18 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,KT,566,697,0,2199,2358,2446,734,1772,2384
+Realization,$/t,8,1957,346,1767,2200,221,1173,725,2358
+Production,Mn$,773,493,599,56,2384,579,6,4,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:05:18 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:05:24 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:05:24 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,KT,566,697,0,2199,2358,2446,734,1772,2384
+Realization,$/t,8,1957,346,1767,2200,221,1173,725,2358
+Production,Mn$,773,493,599,56,2384,579,6,4,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:05:24 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.subplots_adjust(bottom=0.2)  # Adjust the bottom margin to prevent label cutoff
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:05:24 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:05:24 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:05:24 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.subplots_adjust(bottom=0.2)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:05:24 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'subplots_adjust' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:05:24 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-05-01 23:05:24 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:05:24 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:05:24 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,KT,566,697,0,2199,2358,2446,734,1772,2384
+Realization,$/t,8,1957,346,1767,2200,221,1173,725,2358
+Production,Mn$,773,493,599,56,2384,579,6,4,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.subplots_adjust(bottom=0.2)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'subplots_adjust' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:05:24 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:05:29 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:05:29 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,KT,566,697,0,2199,2358,2446,734,1772,2384
+Realization,$/t,8,1957,346,1767,2200,221,1173,725,2358
+Production,Mn$,773,493,599,56,2384,579,6,4,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.subplots_adjust(bottom=0.2)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'subplots_adjust' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:05:29 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:05:29 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:05:29 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:05:29 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:05:29 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:05:29 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:05:30 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:05:31 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:12:28 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:12:28 [INFO] Question: Plot YTD for Q1
+2025-05-01 23:12:28 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:12:28 [INFO] Prompt ID: c73a9d8a-f91e-4084-9b70-f391bfd3c0a8
+2025-05-01 23:12:28 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:12:28 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:12:28 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:12:28 [INFO] Using cached response
+2025-05-01 23:12:28 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:12:28 [INFO] Executing Step 2: Skipping...
+2025-05-01 23:12:28 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:12:28 [INFO] Executing Step 3: Skipping...
+2025-05-01 23:12:28 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:12:28 [INFO] Executing Step 4: Skipping...
+2025-05-01 23:12:28 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:12:28 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:12:28 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:12:28 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:12:28 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:12:28 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:12:28 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:12:28 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:12:28 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+EBITDA_Margin,$/t,221,590,0,166,3,566,734,1754,1890
+Alumina,Mn$,566,1957,56,1767,2384,517,133,621,715
+Premium,KT,2055,238,1791,617,94,180,633,2201,461
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:12:28 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:12:31 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:12:31 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+EBITDA_Margin,$/t,221,590,0,166,3,566,734,1754,1890
+Alumina,Mn$,566,1957,56,1767,2384,517,133,621,715
+Premium,KT,2055,238,1791,617,94,180,633,2201,461
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:12:31 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:12:31 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:12:31 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:12:31 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:12:31 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:12:31 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:12:31 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:12:32 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:13:31 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:13:31 [INFO] Question: Plot YTD for Q1
+2025-05-01 23:13:31 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:13:31 [INFO] Prompt ID: 03639bf9-d5cd-4b7c-a07a-0069ea4e4b8f
+2025-05-01 23:13:31 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:13:31 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:13:31 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:13:31 [INFO] Using cached response
+2025-05-01 23:13:31 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:13:31 [INFO] Executing Step 2: Skipping...
+2025-05-01 23:13:31 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:13:31 [INFO] Executing Step 3: Skipping...
+2025-05-01 23:13:31 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:13:31 [INFO] Executing Step 4: Skipping...
+2025-05-01 23:13:31 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:13:31 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:13:31 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:13:31 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:13:31 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:13:31 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:13:31 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:13:31 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:13:31 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+LME Aluminium,KT,8,201,2190,598,181,8,505,1772,3
+EBITDA_Margin,$/t,247,2154,1791,56,461,566,2005,1932,715
+Sales,Mn$,2446,594,2369,406,1891,2258,1156,480,1166
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:13:31 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:13:33 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:13:33 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+LME Aluminium,KT,8,201,2190,598,181,8,505,1772,3
+EBITDA_Margin,$/t,247,2154,1791,56,461,566,2005,1932,715
+Sales,Mn$,2446,594,2369,406,1891,2258,1156,480,1166
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:13:34 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:13:34 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:13:34 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:13:34 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:13:34 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:13:34 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:13:34 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:13:35 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:18:34 [INFO] Question: Plot YTD for Q1
+2025-05-01 23:18:34 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:18:34 [INFO] Prompt ID: f382bebf-934f-4077-8c25-e56896c04800
+2025-05-01 23:18:34 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:18:34 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:18:34 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:18:34 [INFO] Using cached response
+2025-05-01 23:18:34 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:18:34 [INFO] Executing Step 2: Skipping...
+2025-05-01 23:18:34 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:18:34 [INFO] Executing Step 3: Skipping...
+2025-05-01 23:18:34 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:18:34 [INFO] Executing Step 4: Skipping...
+2025-05-01 23:18:34 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:18:34 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:18:34 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:18:34 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:18:34 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:18:34 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:18:34 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:18:35 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:18:35 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Production,Mn$,2446,2360,346,604,181,8,2005,621,461
+Conversion & Other,KT,123,1957,56,2365,3,2258,190,187,1166
+Sales,$/t,391,625,0,166,461,517,397,1772,182
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:18:35 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:18:37 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:18:37 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Production,Mn$,2446,2360,346,604,181,8,2005,621,461
+Conversion & Other,KT,123,1957,56,2365,3,2258,190,187,1166
+Sales,$/t,391,625,0,166,461,517,397,1772,182
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:18:37 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:18:37 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:18:37 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:18:37 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:18:38 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:18:38 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:18:38 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:18:39 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:27:35 [INFO] Question: Plot YTD for Q1
+2025-05-01 23:27:35 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:27:35 [INFO] Prompt ID: 94252d16-7ab6-4468-a3a5-af7b4d690efc
+2025-05-01 23:27:35 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:27:35 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:27:35 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:27:35 [INFO] Using cached response
+2025-05-01 23:27:35 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:27:35 [INFO] Executing Step 2: Skipping...
+2025-05-01 23:27:35 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:27:35 [INFO] Executing Step 3: Skipping...
+2025-05-01 23:27:35 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:27:35 [INFO] Executing Step 4: Skipping...
+2025-05-01 23:27:35 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:27:35 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:27:35 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:27:35 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:27:36 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:27:36 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:27:36 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:27:36 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:27:36 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Sales,$/t,642,403,598,617,2384,221,397,187,2384
+Value_Added_Products,KT,2446,273,2190,406,94,517,505,4,1085
+Production,Mn$,2055,625,707,361,493,2446,190,1754,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:27:36 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:27:38 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:27:38 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Sales,$/t,642,403,598,617,2384,221,397,187,2384
+Value_Added_Products,KT,2446,273,2190,406,94,517,505,4,1085
+Production,Mn$,2055,625,707,361,493,2446,190,1754,2370
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:27:38 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:27:38 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:27:38 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:27:38 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:27:39 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:27:39 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:27:39 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:27:42 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:51:29 [INFO] Question: YTD trend of Q1
+2025-05-01 23:51:30 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:51:30 [INFO] Prompt ID: e89c37e8-bf12-42ad-b9de-9d687a790eb2
+2025-05-01 23:51:30 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:51:30 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:51:30 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:51:30 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:51:30 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Value_Added_Products,Mn$,8,2154,2190,0,620,579,459,107,1085
+Production,$/t,221,697,179,604,3,2446,633,2391,182
+Conversion & Other,KT,2055,1957,346,361,2384,123,1173,621,94
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ YTD trend of Q1
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-05-01 23:51:30 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:51:34 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:51:34 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Value_Added_Products,Mn$,8,2154,2190,0,620,579,459,107,1085
+Production,$/t,221,697,179,604,3,2446,633,2391,182
+Conversion & Other,KT,2055,1957,346,361,2384,123,1173,621,94
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ YTD trend of Q1
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-05-01 23:51:34 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+
+# Extract the relevant data for YTD trend of Q1
+ytd_q1_data = dfs[0][['Particulars', 'YTD_Q1FY24']]
+
+# Plot the YTD trend of Q1
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD Trend of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1 FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plot_filename = 'ytd_q1_trend.png'
+plt.savefig(plot_filename)
+
+# Declare result var
+result = { "type": "plot", "value": plot_filename }
+            ```
+            
+2025-05-01 23:51:34 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:51:35 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:51:35 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:51:35 [INFO] 
+Code running:
+```
+ytd_q1_data = dfs[0][['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD Trend of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1 FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:51:35 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:51:35 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:51:35 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:51:35 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:51:35 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:51:35 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Value_Added_Products,Mn$,8,2154,2190,0,620,579,459,107,1085
+Production,$/t,221,697,179,604,3,2446,633,2391,182
+Conversion & Other,KT,2055,1957,346,361,2384,123,1173,621,94
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ YTD trend of Q1
+
+You generated this python code:
+ytd_q1_data = dfs[0][['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD Trend of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1 FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:51:35 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:51:37 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:51:37 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Value_Added_Products,Mn$,8,2154,2190,0,620,579,459,107,1085
+Production,$/t,221,697,179,604,3,2446,633,2391,182
+Conversion & Other,KT,2055,1957,346,361,2384,123,1173,621,94
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ YTD trend of Q1
+
+You generated this python code:
+ytd_q1_data = dfs[0][['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD Trend of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1 FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:51:37 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+ytd_q1_data = dfs[0][['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD Trend of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1 FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:51:37 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:51:37 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:51:37 [INFO] 
+Code running:
+```
+ytd_q1_data = dfs[0][['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD Trend of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1 FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:51:38 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:51:38 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:51:38 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:51:40 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:57:43 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:57:43 [INFO] Question: Plot YTD for Q1
+2025-05-01 23:57:43 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:57:43 [INFO] Prompt ID: 9b23fde9-6420-45ed-bca6-add66f9bc800
+2025-05-01 23:57:43 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:57:43 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:57:43 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:57:43 [INFO] Using cached response
+2025-05-01 23:57:43 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:57:43 [INFO] Executing Step 2: Skipping...
+2025-05-01 23:57:43 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:57:43 [INFO] Executing Step 3: Skipping...
+2025-05-01 23:57:43 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:57:43 [INFO] Executing Step 4: Skipping...
+2025-05-01 23:57:43 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:57:43 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:57:43 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:57:43 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:57:43 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-01 23:57:43 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-01 23:57:43 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-01 23:57:43 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-01 23:57:43 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Strategic Hedging,Mn$,517,273,1791,292,716,8,2206,1932,2370
+LME Aluminium,$/t,2446,590,0,2365,493,180,2402,621,2358
+Other Hot Metal,KT,391,2154,578,166,1166,2055,633,793,1166
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-01 23:57:43 [INFO] Executing Step 1: CodeGenerator
+2025-05-01 23:57:46 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:57:46 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Strategic Hedging,Mn$,517,273,1791,292,716,8,2206,1932,2370
+LME Aluminium,$/t,2446,590,0,2365,493,180,2402,621,2358
+Other Hot Metal,KT,391,2154,578,166,1166,2055,633,793,1166
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD for Q1
+
+You generated this python code:
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 8, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-01 23:57:46 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-01 23:57:46 [INFO] Executing Step 2: CodeCleaning
+2025-05-01 23:57:46 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:57:46 [INFO] 
+Code running:
+```
+df = dfs[0]
+plt.figure(figsize=(10, 6))
+plt.bar(df['Particulars'], df['YTD_Q1FY24'], color='skyblue')
+plt.xlabel('Particulars')
+plt.ylabel('YTD Q1FY24')
+plt.title('YTD for Q1FY24')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-01 23:57:46 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:57:46 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:57:46 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:57:47 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:58:59 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:58:59 [INFO] Question: plot sales trend across all quarters
+2025-05-01 23:58:59 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-01 23:58:59 [INFO] Prompt ID: f28ee15f-72a2-499d-9882-ff2aff4e25c6
+2025-05-01 23:58:59 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-01 23:58:59 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-01 23:58:59 [INFO] Executing Step 1: CacheLookup
+2025-05-01 23:58:59 [INFO] Executing Step 2: PromptGeneration
+2025-05-01 23:58:59 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Value_Added_Products,Mn$,517,594,2190,292,620,2055,1173,459,620
+Conversion & Other,$/t,642,273,346,56,2358,221,6,4,1890
+EBITDA,KT,566,1957,599,604,716,123,633,2391,2358
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ plot sales trend across all quarters
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-05-01 23:58:59 [INFO] Executing Step 3: CodeGenerator
+2025-05-01 23:59:04 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-01 23:59:04 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Value_Added_Products,Mn$,517,594,2190,292,620,2055,1173,459,620
+Conversion & Other,$/t,642,273,346,56,2358,221,6,4,1890
+EBITDA,KT,566,1957,599,604,716,123,633,2391,2358
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ plot sales trend across all quarters
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-05-01 23:59:04 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+# Extract the relevant data from the dataframe
+df = dfs[0]
+quarters = ['Q1FY24', 'Q2FY24', 'Q3FY24', 'Q4FY24']
+sales_values = df.loc[df['Particulars'] == 'Value_Added_Products', quarters].values.flatten()
+
+# Plot the sales trend across all quarters
+plt.figure(figsize=(10, 6))
+plt.plot(quarters, sales_values, marker='o', linestyle='-', color='b')
+plt.title('Sales Trend Across All Quarters')
+plt.xlabel('Quarter')
+plt.ylabel('Sales (Mn$)')
+plt.grid(True)
+plt.savefig('sales_trend.png')
+plt.close()
+
+# Declare result variable
+result = { "type": "plot", "value": "sales_trend.png" }
+            ```
+            
+2025-05-01 23:59:04 [INFO] Executing Step 4: CachePopulation
+2025-05-01 23:59:04 [INFO] Executing Step 5: CodeCleaning
+2025-05-01 23:59:04 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-01 23:59:04 [INFO] 
+Code running:
+```
+df = dfs[0]
+quarters = ['Q1FY24', 'Q2FY24', 'Q3FY24', 'Q4FY24']
+sales_values = df.loc[df['Particulars'] == 'Value_Added_Products', quarters].values.flatten()
+plt.figure(figsize=(10, 6))
+plt.plot(quarters, sales_values, marker='o', linestyle='-', color='b')
+plt.title('Sales Trend Across All Quarters')
+plt.xlabel('Quarter')
+plt.ylabel('Sales (Mn$)')
+plt.grid(True)
+plt.savefig('C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+        ```
+2025-05-01 23:59:04 [INFO] Executing Step 6: CodeExecution
+2025-05-01 23:59:04 [INFO] Executing Step 7: ResultValidation
+2025-05-01 23:59:04 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-01 23:59:04 [INFO] Executing Step 8: ResultParsing
+2025-05-01 23:59:05 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:19:42 [INFO] Question: Plot YTD of Q1
+2025-05-02 12:19:44 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-02 12:19:44 [INFO] Prompt ID: 6e7596b9-e25c-41f9-8c52-ad2974240f00
+2025-05-02 12:19:44 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-02 12:19:44 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-02 12:19:44 [INFO] Executing Step 1: CacheLookup
+2025-05-02 12:19:44 [INFO] Executing Step 2: PromptGeneration
+2025-05-02 12:19:45 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,Mn$,2055,2154,346,604,1891,773,6,107,3
+Premium,KT,517,403,2369,292,461,180,2005,725,494
+Alumina,$/t,247,697,56,56,493,2258,1156,4,620
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot YTD of Q1
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-05-02 12:19:45 [INFO] Executing Step 3: CodeGenerator
+2025-05-02 12:19:48 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:19:48 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,Mn$,2055,2154,346,604,1891,773,6,107,3
+Premium,KT,517,403,2369,292,461,180,2005,725,494
+Alumina,$/t,247,697,56,56,493,2258,1156,4,620
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot YTD of Q1
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-05-02 12:19:49 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+
+# Declare result var: 
+# type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+# Extract the dataframe from the list
+df = dfs[0]
+
+# Filter the columns for YTD of Q1
+ytd_q1_data = df[['Particulars', 'YTD_Q1FY24']]
+
+# Plot the YTD of Q1
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('Values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plot_filename = 'ytd_q1fy24_chart.png'
+plt.savefig(plot_filename)
+
+# Declare the result variable
+result = { "type": "plot", "value": plot_filename }
+            ```
+            
+2025-05-02 12:19:49 [INFO] Executing Step 4: CachePopulation
+2025-05-02 12:19:49 [INFO] Executing Step 5: CodeCleaning
+2025-05-02 12:19:49 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-02 12:19:49 [INFO] 
+Code running:
+```
+df = dfs[0]
+ytd_q1_data = df[['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('Values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-02 12:19:49 [INFO] Executing Step 6: CodeExecution
+2025-05-02 12:19:49 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 9, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-02 12:19:49 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-02 12:19:49 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-02 12:19:49 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-02 12:19:49 [INFO] Using prompt: <dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,Mn$,2055,2154,346,604,1891,773,6,107,3
+Premium,KT,517,403,2369,292,461,180,2005,725,494
+Alumina,$/t,247,697,56,56,493,2258,1156,4,620
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD of Q1
+
+You generated this python code:
+df = dfs[0]
+ytd_q1_data = df[['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('Values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 9, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-02 12:19:49 [INFO] Executing Step 1: CodeGenerator
+2025-05-02 12:19:52 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:19:52 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:14x11
+Particulars,UoM,Q1FY24,Q2FY24,Q3FY24,Q4FY24,FY24,YTD_Q1FY24,YTD_Q2FY24,YTD_Q3FY24,YTD_Q4FY24
+Total Cost,Mn$,2055,2154,346,604,1891,773,6,107,3
+Premium,KT,517,403,2369,292,461,180,2005,725,494
+Alumina,$/t,247,697,56,56,493,2258,1156,4,620
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot YTD of Q1
+
+You generated this python code:
+df = dfs[0]
+ytd_q1_data = df[['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('Values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 9, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-02 12:19:52 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+df = dfs[0]
+ytd_q1_data = df[['Particulars', 'YTD_Q1FY24']]
+
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('Values')
+plt.xticks(rotation=45)
+
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2025-05-02 12:19:52 [INFO] Executing Step 2: CodeCleaning
+2025-05-02 12:19:52 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-02 12:19:52 [INFO] 
+Code running:
+```
+df = dfs[0]
+ytd_q1_data = df[['Particulars', 'YTD_Q1FY24']]
+plt.figure(figsize=(10, 6))
+plt.bar(ytd_q1_data['Particulars'], ytd_q1_data['YTD_Q1FY24'], color='skyblue')
+plt.title('YTD of Q1 FY24')
+plt.xlabel('Particulars')
+plt.ylabel('Values')
+plt.xticks(rotation=45)
+plot_filename = 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2025-05-02 12:19:52 [INFO] Executing Step 7: ResultValidation
+2025-05-02 12:19:52 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-02 12:19:52 [INFO] Executing Step 8: ResultParsing
+2025-05-02 12:19:54 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:20:22 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:20:22 [INFO] Question: EBITDA Walk from Q2FY24 to Q3FY24
+2025-05-02 12:20:22 [INFO] Running PandasAI with langchain_azure-openai-chat LLM...
+2025-05-02 12:20:22 [INFO] Prompt ID: 71b706f7-daae-4f4a-9e4f-32216f558185
+2025-05-02 12:20:22 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-05-02 12:20:22 [INFO] Executing Step 0: ValidatePipelineInput
+2025-05-02 12:20:22 [INFO] Executing Step 1: CacheLookup
+2025-05-02 12:20:22 [INFO] Executing Step 2: PromptGeneration
+2025-05-02 12:20:22 [INFO] Using prompt: <dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q4FY24_Q3FY24,221,-23,-38,-3,-12,-49,-158,0,12,37,11,103,-140,221
+EW_Q1FY24_Q1FY24,361,-18,-59,2,1,-5,-174,48,-15,-15,0,0,-124,238
+EW_Q2FY24_Q1FY24,346,-5,41,-2,-8,3,-115,-39,17,49,38,-112,-108,346
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ EBITDA Walk from Q2FY24 to Q3FY24
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-05-02 12:20:22 [INFO] Executing Step 3: CodeGenerator
+2025-05-02 12:20:29 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:20:29 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q4FY24_Q3FY24,221,-23,-38,-3,-12,-49,-158,0,12,37,11,103,-140,221
+EW_Q1FY24_Q1FY24,361,-18,-59,2,1,-5,-174,48,-15,-15,0,0,-124,238
+EW_Q2FY24_Q1FY24,346,-5,41,-2,-8,3,-115,-39,17,49,38,-112,-108,346
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ EBITDA Walk from Q2FY24 to Q3FY24
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-05-02 12:20:29 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+
+# Extract the relevant DataFrame
+df = dfs[0]
+
+# Filter the DataFrame for the required periods
+df_filtered = df[df['Period'] == 'EW_Q4FY24_Q3FY24']
+
+# Calculate the EBITDA Walk
+ebitda_walk = {
+    'EBITDA_From_Quarter': df_filtered['EBITDA_From_Quarter'].values[0],
+    'Sales': df_filtered['Sales'].values[0],
+    'LME': df_filtered['LME'].values[0],
+    'Strategic Hedging': df_filtered['Strategic Hedging'].values[0],
+    'Premium': df_filtered['Premium'].values[0],
+    'Realization': df_filtered['Realization'].values[0],
+    'Total Cost': df_filtered['Total Cost'].values[0],
+    'Alumina': df_filtered['Alumina'].values[0],
+    'Power': df_filtered['Power'].values[0],
+    'Other Hot Metal': df_filtered['Other Hot Metal'].values[0],
+    'Conversion & Other': df_filtered['Conversion & Other'].values[0],
+    'EBITDA_To_Quarter': df_filtered['EBITDA_To_Quarter'].values[0]
+}
+
+# Plot the EBITDA Walk
+categories = list(ebitda_walk.keys())
+values = list(ebitda_walk.values())
+
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('EBITDA Walk from Q2FY24 to Q3FY24')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+# Save the plot
+plt.savefig('ebitda_walk_q2fy24_to_q3fy24.png')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "ebitda_walk_q2fy24_to_q3fy24.png"
+}
+            ```
+            
+2025-05-02 12:20:29 [INFO] Executing Step 4: CachePopulation
+2025-05-02 12:20:29 [INFO] Executing Step 5: CodeCleaning
+2025-05-02 12:20:29 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-02 12:20:29 [INFO] 
+Code running:
+```
+df = dfs[0]
+df_filtered = df[df['Period'] == 'EW_Q4FY24_Q3FY24']
+ebitda_walk = {'EBITDA_From_Quarter': df_filtered['EBITDA_From_Quarter'].values[0], 'Sales': df_filtered['Sales'].values[0], 'LME': df_filtered['LME'].values[0], 'Strategic Hedging': df_filtered['Strategic Hedging'].values[0], 'Premium': df_filtered['Premium'].values[0], 'Realization': df_filtered['Realization'].values[0], 'Total Cost': df_filtered['Total Cost'].values[0], 'Alumina': df_filtered['Alumina'].values[0], 'Power': df_filtered['Power'].values[0], 'Other Hot Metal': df_filtered['Other Hot Metal'].values[0], 'Conversion & Other': df_filtered['Conversion & Other'].values[0], 'EBITDA_To_Quarter': df_filtered['EBITDA_To_Quarter'].values[0]}
+categories = list(ebitda_walk.keys())
+values = list(ebitda_walk.values())
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('EBITDA Walk from Q2FY24 to Q3FY24')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig('C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+        ```
+2025-05-02 12:20:29 [INFO] Executing Step 6: CodeExecution
+2025-05-02 12:20:29 [ERROR] Failed with error: Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+2025-05-02 12:20:29 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-05-02 12:20:29 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-05-02 12:20:29 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-05-02 12:20:29 [INFO] Using prompt: <dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q4FY24_Q3FY24,221,-23,-38,-3,-12,-49,-158,0,12,37,11,103,-140,221
+EW_Q1FY24_Q1FY24,361,-18,-59,2,1,-5,-174,48,-15,-15,0,0,-124,238
+EW_Q2FY24_Q1FY24,346,-5,41,-2,-8,3,-115,-39,17,49,38,-112,-108,346
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ EBITDA Walk from Q2FY24 to Q3FY24
+
+You generated this python code:
+df = dfs[0]
+df_filtered = df[df['Period'] == 'EW_Q4FY24_Q3FY24']
+ebitda_walk = {'EBITDA_From_Quarter': df_filtered['EBITDA_From_Quarter'].values[0], 'Sales': df_filtered['Sales'].values[0], 'LME': df_filtered['LME'].values[0], 'Strategic Hedging': df_filtered['Strategic Hedging'].values[0], 'Premium': df_filtered['Premium'].values[0], 'Realization': df_filtered['Realization'].values[0], 'Total Cost': df_filtered['Total Cost'].values[0], 'Alumina': df_filtered['Alumina'].values[0], 'Power': df_filtered['Power'].values[0], 'Other Hot Metal': df_filtered['Other Hot Metal'].values[0], 'Conversion & Other': df_filtered['Conversion & Other'].values[0], 'EBITDA_To_Quarter': df_filtered['EBITDA_To_Quarter'].values[0]}
+categories = list(ebitda_walk.keys())
+values = list(ebitda_walk.values())
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('EBITDA Walk from Q2FY24 to Q3FY24')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig('C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+2025-05-02 12:20:29 [INFO] Executing Step 1: CodeGenerator
+2025-05-02 12:20:35 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
+2025-05-02 12:20:35 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:16x15
+Period,EBITDA_From_Quarter,Sales,LME,Strategic Hedging,Premium,Realization,Total Cost,Alumina,Power,Other Hot Metal,Conversion & Other,EBITDA_Margin,EBITDA_Impact,EBITDA_To_Quarter
+EW_Q4FY24_Q3FY24,221,-23,-38,-3,-12,-49,-158,0,12,37,11,103,-140,221
+EW_Q1FY24_Q1FY24,361,-18,-59,2,1,-5,-174,48,-15,-15,0,0,-124,238
+EW_Q2FY24_Q1FY24,346,-5,41,-2,-8,3,-115,-39,17,49,38,-112,-108,346
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ EBITDA Walk from Q2FY24 to Q3FY24
+
+You generated this python code:
+df = dfs[0]
+df_filtered = df[df['Period'] == 'EW_Q4FY24_Q3FY24']
+ebitda_walk = {'EBITDA_From_Quarter': df_filtered['EBITDA_From_Quarter'].values[0], 'Sales': df_filtered['Sales'].values[0], 'LME': df_filtered['LME'].values[0], 'Strategic Hedging': df_filtered['Strategic Hedging'].values[0], 'Premium': df_filtered['Premium'].values[0], 'Realization': df_filtered['Realization'].values[0], 'Total Cost': df_filtered['Total Cost'].values[0], 'Alumina': df_filtered['Alumina'].values[0], 'Power': df_filtered['Power'].values[0], 'Other Hot Metal': df_filtered['Other Hot Metal'].values[0], 'Conversion & Other': df_filtered['Conversion & Other'].values[0], 'EBITDA_To_Quarter': df_filtered['EBITDA_To_Quarter'].values[0]}
+categories = list(ebitda_walk.keys())
+values = list(ebitda_walk.values())
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('EBITDA Walk from Q2FY24 to Q3FY24')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig('C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 12, in <module>
+  File "c:\Bizmetric\vedanta\.venv\Lib\site-packages\pandasai\safe_libs\restricted_matplotlib.py", line 75, in __getattr__
+    raise AttributeError(f"'{name}' is not allowed in RestrictedMatplotlib")
+AttributeError: 'tight_layout' is not allowed in RestrictedMatplotlib
+
+
+Fix the python code above and return the new python code:
+            
+2025-05-02 12:20:35 [INFO] Code generated:
+            ```
+            import matplotlib.pyplot as plt
+
+# Filter the dataframe for the specific period
+df = dfs[0]
+df_filtered = df[df['Period'] == 'EW_Q4FY24_Q3FY24']
+
+# Create a dictionary for the EBITDA walk
+ebitda_walk = {
+    'EBITDA_From_Quarter': df_filtered['EBITDA_From_Quarter'].values[0],
+    'Sales': df_filtered['Sales'].values[0],
+    'LME': df_filtered['LME'].values[0],
+    'Strategic Hedging': df_filtered['Strategic Hedging'].values[0],
+    'Premium': df_filtered['Premium'].values[0],
+    'Realization': df_filtered['Realization'].values[0],
+    'Total Cost': df_filtered['Total Cost'].values[0],
+    'Alumina': df_filtered['Alumina'].values[0],
+    'Power': df_filtered['Power'].values[0],
+    'Other Hot Metal': df_filtered['Other Hot Metal'].values[0],
+    'Conversion & Other': df_filtered['Conversion & Other'].values[0],
+    'EBITDA_To_Quarter': df_filtered['EBITDA_To_Quarter'].values[0]
+}
+
+# Extract categories and values for plotting
+categories = list(ebitda_walk.keys())
+values = list(ebitda_walk.values())
+
+# Plot the EBITDA walk
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('EBITDA Walk from Q2FY24 to Q3FY24')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.xticks(rotation=45, ha='right')
+
+# Save the plot to a file
+plt.savefig('C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png')
+
+# Return the result
+result = {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+            ```
+            
+2025-05-02 12:20:35 [INFO] Executing Step 2: CodeCleaning
+2025-05-02 12:20:35 [INFO] Saving charts to C:\Bizmetric\GENAI_POC\copy_vedanta\exports\charts\temp_chart.png
+2025-05-02 12:20:35 [INFO] 
+Code running:
+```
+df = dfs[0]
+df_filtered = df[df['Period'] == 'EW_Q4FY24_Q3FY24']
+ebitda_walk = {'EBITDA_From_Quarter': df_filtered['EBITDA_From_Quarter'].values[0], 'Sales': df_filtered['Sales'].values[0], 'LME': df_filtered['LME'].values[0], 'Strategic Hedging': df_filtered['Strategic Hedging'].values[0], 'Premium': df_filtered['Premium'].values[0], 'Realization': df_filtered['Realization'].values[0], 'Total Cost': df_filtered['Total Cost'].values[0], 'Alumina': df_filtered['Alumina'].values[0], 'Power': df_filtered['Power'].values[0], 'Other Hot Metal': df_filtered['Other Hot Metal'].values[0], 'Conversion & Other': df_filtered['Conversion & Other'].values[0], 'EBITDA_To_Quarter': df_filtered['EBITDA_To_Quarter'].values[0]}
+categories = list(ebitda_walk.keys())
+values = list(ebitda_walk.values())
+plt.figure(figsize=(10, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('EBITDA Walk from Q2FY24 to Q3FY24')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.xticks(rotation=45, ha='right')
+plt.savefig('C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+        ```
+2025-05-02 12:20:36 [INFO] Executing Step 7: ResultValidation
+2025-05-02 12:20:36 [INFO] Answer: {'type': 'plot', 'value': 'C:/Bizmetric/GENAI_POC/copy_vedanta/exports/charts/temp_chart.png'}
+2025-05-02 12:20:36 [INFO] Executing Step 8: ResultParsing
+2025-05-02 12:20:36 [INFO] HTTP Request: POST https://cog-ccgt327nxe3tc.openai.azure.com/openai/deployments/biz-gpt-4o/chat/completions?api-version=2024-02-01 "HTTP/1.1 200 OK"
